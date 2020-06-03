@@ -1,0 +1,64 @@
+import dependencias.*
+import trafic.*
+import rodados.*
+
+
+test "Test con 2 dependencias" {
+	/*Instancias de las clases*/
+	const deportes = new Dependencia()
+	const cultura = new Dependencia()
+	
+	const cachito = new ChevroletCorsa(color="Rojo")
+	const corsaAzul = new ChevroletCorsa(color="Azul")
+	const corsaVerde = new ChevroletCorsa(color="Verde")
+	
+	const especial = new AutoEspecial(capacidad=5, velocidadMaxima=160, peso=1200, color="Beige")
+	
+	const kwid = new RenaultKwid(tanqueAdicional = true)
+	const kwid1 = new RenaultKwid(tanqueAdicional = true)
+	const kwid2 = new RenaultKwid(tanqueAdicional = true)
+	const kwid3 = new RenaultKwid(tanqueAdicional = false)
+	
+	/*Configuración de las instancias de las clases*/
+	deportes.empleados(45)
+	cultura.empleados(31)
+	
+	/*Configuración del motor batatón y del interior popular*/
+	motor.peso(500)
+	motor.velocidadMaxima(80)	
+	interior.peso(1000) 
+	interior.capacidad(12)		
+	
+	/*Configuración de la trafic */
+	trafic.unMotor(motor)
+	trafic.unInterior(interior)
+	
+	/*Agregado de flotas a cada dependencia*/
+	deportes.agregarRodado(cachito)
+	deportes.agregarRodado(corsaAzul)
+	deportes.agregarRodado(corsaVerde)
+	deportes.agregarRodado(kwid)
+	deportes.agregarRodado(especial)
+	
+	cultura.agregarRodado(cachito)
+	cultura.agregarRodado(kwid1)
+	cultura.agregarRodado(kwid2)
+	cultura.agregarRodado(kwid3)
+	cultura.agregarRodado(trafic)
+	
+	/*Test a la dependencia "deportes"*/	
+	assert.equals(6450, deportes.pesoTotalFlota())
+	assert.that(deportes.estaBienEquipada())
+	assert.equals(7, deportes.capacidadTotalEnColor("Azul"))
+	assert.equals("Beige", deportes.colorDelRodadoMasRapido())
+	assert.that(deportes.esGrande())
+	assert.equals(25, deportes.capacidadFaltante())
+	
+	/*Test a la dependencia "cultura"*/
+	assert.equals(10700, cultura.pesoTotalFlota())
+	assert.notThat(cultura.estaBienEquipada())
+	assert.equals(10, cultura.capacidadTotalEnColor("Azul"))
+	assert.equals("Rojo", cultura.colorDelRodadoMasRapido())
+	assert.notThat(cultura.esGrande())
+	assert.equals(5, cultura.capacidadFaltante())
+}

@@ -1,0 +1,47 @@
+import rodados.*
+import trafic.*
+import dependencias.*
+
+test "Modelo de pedidos" {
+	/*Creación de las instancias de los rodados*/
+	const cachito = new ChevroletCorsa(color="Rojo")
+	const kwid = new RenaultKwid(tanqueAdicional=false)
+	
+	/*Configuración del pedido*/
+	pedido.distanciaARecorrer(980)
+	pedido.tiempoMaximo(8)
+	pedido.pasajerosATransportar(4)
+	pedido.coloresIncompatibles(#{"Azul", "Negro"})
+	
+	/*Test a cachito y a kwid*/
+	assert.that(pedido.puedeSatisfacerUnPedido(cachito))
+	assert.notThat(pedido.puedeSatisfacerUnPedido(kwid))
+	
+	/*Configuración del pedido para que "cachito" no pueda satisfacer el pedido*/
+	pedido.distanciaARecorrer(980)
+	pedido.tiempoMaximo(8)
+	pedido.pasajerosATransportar(4)
+	pedido.coloresIncompatibles(#{"Azul", "Negro", "Rojo"})
+	
+	/*Test a cachito con el Rojo como incompatible*/
+	assert.notThat(pedido.puedeSatisfacerUnPedido(cachito))
+	
+	/*Configuración del pedido para que "cachito" no pueda satisfacer el pedido - 2da parte*/
+	pedido.distanciaARecorrer(980)
+	pedido.tiempoMaximo(8)
+	pedido.pasajerosATransportar(6)
+	pedido.coloresIncompatibles(#{"Azul", "Negro"})
+	
+	/*Test a cachito con 6 pasajeros a transportar*/
+	assert.notThat(pedido.puedeSatisfacerUnPedido(cachito))
+	
+	/*Configuración del pedido para que "cachito" no pueda satisfacer el pedido - 3ra parte*/
+	pedido.distanciaARecorrer(980)
+	pedido.tiempoMaximo(6)
+	pedido.pasajerosATransportar(4)
+	pedido.coloresIncompatibles(#{"Azul", "Negro"})
+	
+	/*Test a cachito con un tiempo máximo de 6hs*/
+	assert.notThat(pedido.puedeSatisfacerUnPedido(cachito))
+	
+}

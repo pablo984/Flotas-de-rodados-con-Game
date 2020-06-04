@@ -1,7 +1,10 @@
-import dependencias.*
+import wollok.game.*
+
 
 class ChevroletCorsa {
 	var property color
+	var property position
+	const property ultimasPosiciones = []
 	
 	method capacidad() {
 		return 4
@@ -12,6 +15,14 @@ class ChevroletCorsa {
 	method peso() {
 		return 1300
 	}
+	method cambiarPosicion(posicionX, posicionY) {
+		 self.position(game.at(posicionX, posicionY))
+		 ultimasPosiciones.add(self.position())
+	}
+	method pasoPor(other) {
+		
+	}
+	 
 }
 
 class RenaultKwid {
@@ -27,7 +38,7 @@ class RenaultKwid {
 		return if (not tanqueAdicional) {1200} else {1350}
 	}
 	method color() {
-		return "Azul"
+		return azul
 	}
 }
 
@@ -37,4 +48,15 @@ class AutoEspecial {
 	var property peso
 	var property color
 
-} 
+}
+
+object rojo {}
+object blanco {}
+object azul {}
+object negro {}
+object beige {}
+object verde {}
+
+
+
+

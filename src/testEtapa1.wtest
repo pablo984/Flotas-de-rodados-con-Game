@@ -1,6 +1,7 @@
 import dependencias.*
 import trafic.*
 import rodados.*
+import wollok.game.*
 
 
 test "Test con 2 dependencias" {
@@ -8,11 +9,11 @@ test "Test con 2 dependencias" {
 	const deportes = new Dependencia()
 	const cultura = new Dependencia()
 	
-	const cachito = new ChevroletCorsa(color="Rojo")
-	const corsaAzul = new ChevroletCorsa(color="Azul")
-	const corsaVerde = new ChevroletCorsa(color="Verde")
+	const cachito = new ChevroletCorsa(color=rojo, position=game.at(0,0))
+	const corsaAzul = new ChevroletCorsa(color=azul, position=game.at(0,0))
+	const corsaVerde = new ChevroletCorsa(color=verde, position=game.at(0,0))
 	
-	const especial = new AutoEspecial(capacidad=5, velocidadMaxima=160, peso=1200, color="Beige")
+	const especial = new AutoEspecial(capacidad=5, velocidadMaxima=160, peso=1200, color=beige)
 	
 	const kwid = new RenaultKwid(tanqueAdicional = true)
 	const kwid1 = new RenaultKwid(tanqueAdicional = true)
@@ -49,16 +50,16 @@ test "Test con 2 dependencias" {
 	/*Test a la dependencia "deportes"*/	
 	assert.equals(6450, deportes.pesoTotalFlota())
 	assert.that(deportes.estaBienEquipada())
-	assert.equals(7, deportes.capacidadTotalEnColor("Azul"))
-	assert.equals("Beige", deportes.colorDelRodadoMasRapido())
+	assert.equals(7, deportes.capacidadTotalEnColor(azul))
+	assert.equals(beige, deportes.colorDelRodadoMasRapido())
 	assert.that(deportes.esGrande())
 	assert.equals(25, deportes.capacidadFaltante())
 	
 	/*Test a la dependencia "cultura"*/
 	assert.equals(10700, cultura.pesoTotalFlota())
 	assert.notThat(cultura.estaBienEquipada())
-	assert.equals(10, cultura.capacidadTotalEnColor("Azul"))
-	assert.equals("Rojo", cultura.colorDelRodadoMasRapido())
+	assert.equals(10, cultura.capacidadTotalEnColor(azul))
+	assert.equals(rojo, cultura.colorDelRodadoMasRapido())
 	assert.notThat(cultura.esGrande())
 	assert.equals(5, cultura.capacidadFaltante())
 }

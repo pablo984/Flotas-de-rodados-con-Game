@@ -1,3 +1,5 @@
+import dependencias.*
+
 class ChevroletCorsa {
 	var property color
 	
@@ -34,4 +36,5 @@ class AutoEspecial {
 	var property velocidadMaxima
 	var property peso
 	var property color
+
 } 

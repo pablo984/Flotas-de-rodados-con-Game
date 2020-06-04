@@ -7,6 +7,9 @@ test "Modelo de pedidos" {
 	const cachito = new ChevroletCorsa(color="Rojo")
 	const kwid = new RenaultKwid(tanqueAdicional=false)
 	
+	/*Creación de la clase Pedido*/
+	const pedido = new Pedido()
+	
 	/*Configuración del pedido*/
 	pedido.distanciaARecorrer(980)
 	pedido.tiempoMaximo(8)

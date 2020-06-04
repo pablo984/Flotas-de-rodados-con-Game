@@ -4,12 +4,19 @@ import trafic.*
 class Dependencia {
 	const property flota = []
 	var property empleados
+	const property registroPedidos = []
 	
 	method agregarRodado(unRodado) {
 		flota.add(unRodado)
 	}
 	method quitarRodado(unRodado) {
 		flota.remove(unRodado)
+	}
+	method agregarUnPedido(unPedido) {
+		registroPedidos.add(unPedido)
+	}
+	method quitarPedido(unPedido) {
+		registroPedidos.remove(unPedido)
 	}
 	method pesoTotalFlota() {
 		return flota.sum({ rod => rod.peso() })
@@ -34,8 +41,21 @@ class Dependencia {
 	method esGrande() {
 		return self.empleados() >= 40 and flota.size() >= 5
 	}
+	method tenesAutoPara(unPedido) {
+		return flota.any({ rod => unPedido.puedeSatisfacerUnPedido(rod) })
+	}
+	method pedidosRechazados() {
+		return registroPedidos.filter({ ped => not self.tenesAutoPara(ped) })
+	}
+	method esIncompatible(unColor) {
+		return registroPedidos.all({ ped => ped.coloresIncompatibles().contains(unColor) })
+	}
+	method relajarTodosLosPedidos() {
+		registroPedidos.forEach({ ped => ped.relajar() })
+	}
 }
 
+/*Interiores y motores para la Trafic*/
 object interior {
 	var property capacidad
 	var property peso	
@@ -46,7 +66,8 @@ object motor {
 	var property peso
 }
 
-object pedido {
+/*Pedidos*/
+class Pedido {
 	var property distanciaARecorrer
 	var property tiempoMaximo
 	var property pasajerosATransportar

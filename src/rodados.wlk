@@ -3,8 +3,9 @@ import wollok.game.*
 
 class ChevroletCorsa {
 	var property color
+	var property image = "autitorojo.png"
 	var property position
-	const property ultimasPosiciones = []
+	const property misPosiciones = []
 	
 	method capacidad() {
 		return 4
@@ -17,12 +18,22 @@ class ChevroletCorsa {
 	}
 	method cambiarPosicion(posicionX, posicionY) {
 		 self.position(game.at(posicionX, posicionY))
-		 ultimasPosiciones.add(self.position())
+		 misPosiciones.add(self.position())
 	}
-	method pasoPor(other) {
-		
+	method pasoPor(unaPosicion) {
+		return misPosiciones.contains(unaPosicion)
 	}
-	 
+	/*Método adicional*/
+	method soloLosDelEjeX() {
+		return misPosiciones.map({ pos => pos.x() })
+	}
+	method pasoPorFila(numero) {
+		return self.soloLosDelEjeX().contains(numero)
+	}	
+	method recorrioFilas(listaNumeros) {
+		return self.soloLosDelEjeX().all({ pos => listaNumeros.contains(pos) })
+	}
+
 }
 
 class RenaultKwid {
@@ -38,7 +49,7 @@ class RenaultKwid {
 		return if (not tanqueAdicional) {1200} else {1350}
 	}
 	method color() {
-		return azul
+		return "Azul"
 	}
 }
 
@@ -50,12 +61,24 @@ class AutoEspecial {
 
 }
 
-object rojo {}
+object rojo {
+	method image() {
+		return "autitorojo.png"
+	}
+}
 object blanco {}
-object azul {}
+object azul {
+	method image() {
+		return "autitoazul.png"
+	}
+}
 object negro {}
 object beige {}
-object verde {}
+object verde {
+	method image() {
+		return "autitoverde.png"
+	}
+}
 
 
 

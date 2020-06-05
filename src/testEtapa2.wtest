@@ -5,7 +5,7 @@ import wollok.game.*
 
 test "Modelo de pedidos" {
 	/*Creación de las instancias de los rodados*/
-	const cachito = new ChevroletCorsa(color=rojo, position=game.at(0,0))
+	const cachito = new ChevroletCorsa(color="Rojo", position=game.at(0,0))
 	const kwid = new RenaultKwid(tanqueAdicional=false)
 	
 	/*Creación de la clase Pedido*/
@@ -15,7 +15,7 @@ test "Modelo de pedidos" {
 	pedido.distanciaARecorrer(980)
 	pedido.tiempoMaximo(8)
 	pedido.pasajerosATransportar(4)
-	pedido.coloresIncompatibles(#{azul, negro})
+	pedido.coloresIncompatibles(#{"Azul", "Negro"})
 	
 	/*Test a cachito y a kwid*/
 	assert.that(pedido.puedeSatisfacerUnPedido(cachito))
@@ -25,7 +25,7 @@ test "Modelo de pedidos" {
 	pedido.distanciaARecorrer(980)
 	pedido.tiempoMaximo(8)
 	pedido.pasajerosATransportar(4)
-	pedido.coloresIncompatibles(#{azul, negro, rojo})
+	pedido.coloresIncompatibles(#{"Azul", "Negro", "Rojo"})
 	
 	/*Test a cachito con el Rojo como incompatible*/
 	assert.notThat(pedido.puedeSatisfacerUnPedido(cachito))
@@ -34,7 +34,7 @@ test "Modelo de pedidos" {
 	pedido.distanciaARecorrer(980)
 	pedido.tiempoMaximo(8)
 	pedido.pasajerosATransportar(6)
-	pedido.coloresIncompatibles(#{azul, negro})
+	pedido.coloresIncompatibles(#{"Azul", "Negro"})
 	
 	/*Test a cachito con 6 pasajeros a transportar*/
 	assert.notThat(pedido.puedeSatisfacerUnPedido(cachito))
@@ -43,7 +43,7 @@ test "Modelo de pedidos" {
 	pedido.distanciaARecorrer(980)
 	pedido.tiempoMaximo(6)
 	pedido.pasajerosATransportar(4)
-	pedido.coloresIncompatibles(#{azul, negro})
+	pedido.coloresIncompatibles(#{"Azul", "Negro"})
 	
 	/*Test a cachito con un tiempo máximo de 6hs*/
 	assert.notThat(pedido.puedeSatisfacerUnPedido(cachito))

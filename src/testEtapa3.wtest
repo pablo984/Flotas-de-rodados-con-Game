@@ -9,9 +9,9 @@ test "Test etapa 3" {
 	const deportes = new Dependencia(empleados=45)
 	
 	/*Instancias de las clases de autos y su configuración */
-	const cachito = new ChevroletCorsa(color=rojo, position=game.at(0,0))
-	const corsaAzul = new ChevroletCorsa(color=azul, position=game.at(0,0))
-	const especial = new AutoEspecial(capacidad=5, velocidadMaxima=160, peso=1200, color=beige)	
+	const cachito = new ChevroletCorsa(color="Rojo", position=game.at(0,0))
+	const corsaAzul = new ChevroletCorsa(color="Azul", position=game.at(0,0))
+	const especial = new AutoEspecial(capacidad=5, velocidadMaxima=160, peso=1200, color="Beige")	
 	const kwid = new RenaultKwid(tanqueAdicional = true)
 	
 	/*Agregado de los autos a la flota de la dependencia*/
@@ -29,7 +29,7 @@ test "Test etapa 3" {
 	pedido1.distanciaARecorrer(980)
 	pedido1.tiempoMaximo(8)
 	pedido1.pasajerosATransportar(4)
-	pedido1.coloresIncompatibles(#{azul, negro, rojo, beige})
+	pedido1.coloresIncompatibles(#{"Azul", "Negro", "Rojo", "Beige"})
 	
 	/*Test al pedido1*/
 	assert.notThat(deportes.tenesAutoPara(pedido1))
@@ -37,7 +37,7 @@ test "Test etapa 3" {
 	pedido2.distanciaARecorrer(1000)
 	pedido2.tiempoMaximo(8)
 	pedido2.pasajerosATransportar(4)
-	pedido2.coloresIncompatibles(#{azul, negro, rojo})
+	pedido2.coloresIncompatibles(#{"Azul", "Negro", "Rojo"})
 	
 	/*Test al pedido2*/
 	assert.that(deportes.tenesAutoPara(pedido2))
@@ -45,7 +45,7 @@ test "Test etapa 3" {
 	pedido3.distanciaARecorrer(900)
 	pedido3.tiempoMaximo(6)
 	pedido3.pasajerosATransportar(8)
-	pedido3.coloresIncompatibles(#{azul, negro})
+	pedido3.coloresIncompatibles(#{"Azul", "Negro"})
 	
 	/*Test al pedido 3*/
 	assert.notThat(deportes.tenesAutoPara(pedido3))
@@ -59,10 +59,10 @@ test "Test etapa 3" {
 	assert.equals(([pedido1, pedido3]), deportes.pedidosRechazados())
 	
 	/*Test a la dependencia para chequear si el color dado es incompatible con todos los pedidos*/
-	assert.that(deportes.esIncompatible(azul))
-	assert.notThat(deportes.esIncompatible(rojo))
-	assert.that(deportes.esIncompatible(negro))
-	assert.notThat(deportes.esIncompatible(beige))
+	assert.that(deportes.esIncompatible("Azul"))
+	assert.notThat(deportes.esIncompatible("Rojo"))
+	assert.that(deportes.esIncompatible("Negro"))
+	assert.notThat(deportes.esIncompatible("Beige"))
 	
 	/*Relajación de todos los pedidos de la dependencia*/
 	deportes.relajarTodosLosPedidos()

@@ -30,7 +30,7 @@ test "Test con 2 dependencias" {
 	interior.peso(1000) 
 	interior.capacidad(12)		
 	
-	/*Configuración de la trafic */
+	/*Configuración de la trafic*/
 	trafic.unMotor(motor)
 	trafic.unInterior(interior)
 	

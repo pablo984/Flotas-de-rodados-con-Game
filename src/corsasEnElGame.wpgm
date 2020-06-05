@@ -2,10 +2,32 @@ import wollok.game.*
 import rodados.*
 
 program corsasEnElGame {
+	/*Creación de la instancia*/
+	const cachito = new ChevroletCorsa()	
+	
+	/*Configuración del tablero*/
 	game.height(15)
 	game.width(15)
 	
-	game.title("Corsas en el Game") 
+	/*Agregado del título al tablero*/
+	game.title("Corsas en el Game")
+	
+	/*Agregado de la instancia al juego*/
+	game.addVisual(cachito)
+	
+	/*Movimientos de los Corsa*/
+	keyboard.right().onPressDo{ cachito.moverDerecha() }
+	keyboard.left().onPressDo{ cachito.moverIzquierda() } 
+	keyboard.up().onPressDo{ cachito.moverArriba() }
+	keyboard.down().onPressDo{ cachito.moverAbajo() }
+	
+	/*Cambio de color de los Corsa*/
+	keyboard.r().onPressDo{ cachito.image("autitorojo.png") }
+	keyboard.v().onPressDo{ cachito.image("autitoVerde.png") }
+	keyboard.a().onPressDo{ cachito.image("autitoazul.png") }
+	
+	/*Consulta sobre la posición actual*/
+	keyboard.p().onPressDo{ game.say(cachito, cachito.dondeEstas()) }
 	
 	game.start()
 }

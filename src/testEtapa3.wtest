@@ -8,7 +8,7 @@ test "Test etapa 3" {
 	/*Instancias de la clase Dependencia y su configuración*/
 	const deportes = new Dependencia(empleados=45)
 	
-	/*Instancias de las clases de autos y su configuración */
+	/*Instancias de las clases de autos y su configuración*/
 	const cachito = new ChevroletCorsa(color="Rojo", position=game.at(0,0))
 	const corsaAzul = new ChevroletCorsa(color="Azul", position=game.at(0,0))
 	const especial = new AutoEspecial(capacidad=5, velocidadMaxima=160, peso=1200, color="Beige")	

@@ -4,7 +4,7 @@ import wollok.game.*
 class ChevroletCorsa {
 	var property color
 	var property image = "autitorojo.png"
-	var property position
+	var property position = game.at(0,0)
 	const property misPosiciones = []
 	
 	method capacidad() {
@@ -33,7 +33,24 @@ class ChevroletCorsa {
 	method recorrioFilas(listaNumeros) {
 		return self.soloLosDelEjeX().all({ pos => listaNumeros.contains(pos) })
 	}
-
+	/*Método adicional para realizar consultas de posición en game*/
+	method dondeEstas() {
+		return "Estoy en la posición " + position
+	}
+	/*Métodos para mover el auto por el tablero del game*/
+	method moverDerecha() {
+		self.position(self.position().right(1))
+	}
+	method moverIzquierda() {
+		self.position(self.position().left(1))
+	}
+	method moverArriba() {
+		self.position(self.position().up(1))
+	}
+	method moverAbajo() {
+		self.position(self.position().down(1))
+	}
+	
 }
 
 class RenaultKwid {
@@ -61,24 +78,7 @@ class AutoEspecial {
 
 }
 
-object rojo {
-	method image() {
-		return "autitorojo.png"
-	}
-}
-object blanco {}
-object azul {
-	method image() {
-		return "autitoazul.png"
-	}
-}
-object negro {}
-object beige {}
-object verde {
-	method image() {
-		return "autitoverde.png"
-	}
-}
+
 
 
 

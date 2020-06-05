@@ -1,0 +1,44 @@
+import rodados.*
+import wollok.game.*
+
+
+test "Test de coordenadas" {
+	/*Creación de una instancia de ChevroletCorsa*/
+	const corsa = new ChevroletCorsa(color="Rojo")
+	
+	/*Cambio de posiciones del corsa*/
+	corsa.cambiarPosicion(3,4)
+	corsa.cambiarPosicion(3,5)
+	corsa.cambiarPosicion(5,5)
+	corsa.cambiarPosicion(7,5)
+	corsa.cambiarPosicion(9,2)
+	corsa.cambiarPosicion(7,1)
+	
+	/*Tests sobre las posiciones donde estuvo el corsa*/
+	assert.that(corsa.pasoPor(game.at(7,5)))
+	assert.that(corsa.pasoPor(game.at(5,5)))
+	assert.that(corsa.pasoPor(game.at(9,2)))
+	assert.notThat(corsa.pasoPor(game.at(9,1)))
+	assert.notThat(corsa.pasoPor(game.at(8,4)))
+	assert.notThat(corsa.pasoPor(game.at(3,2)))
+		
+	
+	/*Tests sobre las filas que pasó el corsa*/	
+	assert.that(corsa.pasoPorFila(7))
+	assert.that(corsa.pasoPorFila(3))
+	assert.that(corsa.pasoPorFila(5))
+	assert.that(corsa.pasoPorFila(9))
+	assert.notThat(corsa.pasoPorFila(6))
+	assert.notThat(corsa.pasoPorFila(2))
+	assert.notThat(corsa.pasoPorFila(1))
+	
+	/*Test para saber si el corsa recorrió todas las filas que le consulto*/
+	assert.that(corsa.recorrioFilas([3,5,7,9]))
+	assert.that(corsa.recorrioFilas([7,5,9,3]))
+	assert.notThat(corsa.recorrioFilas([4,5,7])) //Da falso porque no pasó por la fila 4
+	assert.notThat(corsa.recorrioFilas([3,5,7])) // Da falso porque faltó decir que pasó por la fila 9
+	
+	
+
+
+}

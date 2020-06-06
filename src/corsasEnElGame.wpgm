@@ -6,8 +6,9 @@ program corsasEnElGame {
 	const cachito = new ChevroletCorsa()	
 	
 	/*Configuración del tablero*/
-	game.height(15)
-	game.width(15)
+	game.height(16)
+	game.width(16)
+	game.boardGround("mapafondo.png") //La imágen se ve fea porque se vio afectada al bajarle la resolución
 	
 	/*Agregado del título al tablero*/
 	game.title("Corsas en el Game")
@@ -30,4 +31,9 @@ program corsasEnElGame {
 	keyboard.p().onPressDo{ game.say(cachito, cachito.dondeEstas()) }
 	
 	game.start()
+	
+	/*Salir del juego*/
+	keyboard.space().onPressDo{ game.stop() }
+	
+	
 }

@@ -34,6 +34,7 @@ test "Test etapa 3" {
 	/*Test al pedido1*/
 	assert.notThat(deportes.tenesAutoPara(pedido1))
 	
+	/*Configuración del pedido2*/
 	pedido2.distanciaARecorrer(1000)
 	pedido2.tiempoMaximo(8)
 	pedido2.pasajerosATransportar(4)
@@ -42,6 +43,7 @@ test "Test etapa 3" {
 	/*Test al pedido2*/
 	assert.that(deportes.tenesAutoPara(pedido2))
 	
+	/*Configuración del pedido3*/
 	pedido3.distanciaARecorrer(900)
 	pedido3.tiempoMaximo(6)
 	pedido3.pasajerosATransportar(8)
@@ -54,6 +56,9 @@ test "Test etapa 3" {
 	deportes.agregarUnPedido(pedido1)
 	deportes.agregarUnPedido(pedido2)
 	deportes.agregarUnPedido(pedido3)
+	
+	/*Test a la dependencia para ver el total de pasajeros en los pedidos*/
+	assert.equals(16, deportes.totalDePasajerosEnPedidosRegistrados())
 	
 	/*Test a la dependencia para filtrar los pedidos rechazados*/
 	assert.equals(([pedido1, pedido3]), deportes.pedidosRechazados())

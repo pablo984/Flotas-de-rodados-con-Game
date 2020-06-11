@@ -41,6 +41,9 @@ class Dependencia {
 	method esGrande() {
 		return self.empleados() >= 40 and flota.size() >= 5
 	}
+	method totalDePasajerosEnPedidosRegistrados() {
+		return registroPedidos.sum({ ped => ped.pasajerosATransportar() })
+	}
 	method tenesAutoPara(unPedido) {
 		return flota.any({ rod => unPedido.puedeSatisfacerUnPedido(rod) })
 	}
